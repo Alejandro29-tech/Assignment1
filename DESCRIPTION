@@ -1,11 +1,13 @@
 Package: Assignment1
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Exploration and Application of R for Data Science
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Alejandro Pachón, Santiago Meza, Alexander Morgan
+Maintainer: Alejandro Pachón, Santiago Meza, Alexander Morgan
+Description: En este paquete se incluiran los scripts de los numeros del 1 al 100 
+            imprimiendo solo los numeros primos y tambien algunos ejercicios 
+            de la pagina web: https://r4ds.had.co.nz/transform.html, adicionalmente
+            se encuentra un pdf con el instructivo de cada punto.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
