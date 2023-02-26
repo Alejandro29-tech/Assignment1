@@ -20,5 +20,5 @@ time_record<-flights %>%
 # La primera métrica es la proporción de vuelos no cancelados y a tiempo.
 # Utilizo la presencia de una hora de llegada como indicador de que un vuelo no fue cancelado.
 # Sin embargo, hay muchos aviones que nunca han volado un vuelo a tiempo.
-# Además, muchos de los aviones que tienen la menor proporción de vuelos a tiempo
+# Además, muchos de los aviones que tienen la menor proporción de vuelos a tiempo,
 # solo han volado un pequeño número de vuelos.
