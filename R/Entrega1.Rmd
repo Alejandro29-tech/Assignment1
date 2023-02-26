@@ -15,8 +15,8 @@ Puedes visitar nuestro repositorio en internet, para más información: [**Nuest
 
 ## Numeros primos
 
-En este codigo, la linea for (x in 1:100){, identifica con la variable "x", desde el valor 1 al 100.
-Luego, se declara "Nprimo" como TRUE, para que en cuyo caso de que el numero a valorar sea primo, el codigo posteriormente lo imprima sin necesidad de volver a preguntar el numero almacenado, despues se abre un nuevo 'for' en donde se encuentran dos "if", para que luego de realizar la operación, identifique si es o no un numero primo. Conociendo que si la división es menor al valor que este en el "for N", tomara la variable N el valor de x para salir del "for" y continuar a imprimir el numero. De lo contrario, si el modulo es diferente de "0", Nprimo pasara a ser falso y no imprimira el numero en la consola. Y asi consecutivamente hasta llegar al número 100.  
+En este codigo, la linea for (x in 1:100){, identifica con la variable "x", desde el valor 1 al 100. Luego, se declara "Nprimo" como TRUE, para que en cuyo caso de que el numero a valorar sea primo, el codigo posteriormente lo imprima sin necesidad de volver a preguntar el numero almacenado, despues se abre un nuevo 'for' en donde se encuentran dos "if", para que luego de realizar la operación, identifique si es o no un numero primo. Conociendo que si la división es menor al valor que este en el "for N", tomara la variable N el valor de x para salir del "for" y continuar a imprimir el numero. De lo contrario, si el modulo es diferente de "0", Nprimo pasara a ser falso y no imprimira el numero en la consola. Y asi consecutivamente hasta llegar al número 100.
+
 ```{r primos, results='asis'}
 #numeros primos
 for (x in 1:100){
@@ -36,11 +36,14 @@ for (x in 1:100){
 }
 
 ```
+
 ## 2. Uso basico de la libreria Tidyverse
 
 los ejercicios propuestos en el documento se tomaron del apartado [**Data transformation**](https://r4ds.had.co.nz/transform.html), de la pagina *R for Data Science*.
 
-#### 5.2.4: 1. Encuentra todos los vuelos que:
+### 5.2.4:
+
+####1. Encuentra todos los vuelos que:
 
 -   **Item 1:** Tuvieron un retraso de llegada de dos o más horas.
 
@@ -52,6 +55,7 @@ Primero identificamos la variable de retraso de llegada, en la base de datos es 
         filter(flights,arr_delay>119)
 
 ```
+
 -   **item 2:** Voló a Houston (IAH o HOU).
 
 Se identifica la variable que indique el destino de los vuelos y esta se le da la condicion a la cual queremos filtrar en este caso se define con 2 nombres diferentes al destino del vuelo, por lo tanto en la condicion de `filter()` debe ser consideraro para que tome ambas nomenclaturas, para esto se agrega la operacion logica `|`. De esta forma tendriamos que:
@@ -60,8 +64,7 @@ Se identifica la variable que indique el destino de los vuelos y esta se le da l
         library(nycflights13)
         library(dplyr)    
         filter(flights, dest=="IAH"|dest=="HOU" )
-```    
-
+```
 
 -   **Item 3:** Fueron operados por United, American o Delta.
 
@@ -116,9 +119,68 @@ library(dplyr)
 #### 5.2.4: 2.Otro ayudante de filtrado de dplyr útil es between(). ¿Qué hace? ¿Puede usarse para simplificar los códigos del anterior punto?
 
 la funcion `between()` realiza un rango de valores partiendo de una variable, de esta forma puede cambiar la estructura de varios ejercicios vistos anteriormente, un ejemplo utilizando el Item 7 del punto anterior seria:
+
 ```{r punto 2, message=FALSE }
 library(nycflights13)
 library(dplyr)
 filter(flights, between(hour, 0,6))
 ```
+
 donde como se ve, al usar la funcion `between()` cambia totalmente la estructura interna de `filter()`, devido a que el uso de esta hace inesesario en uso de la condicion de `<, >, => y <=`.
+
+### 5.3.1:
+
+#### 1. ¿Cómo pudiste usar arrange() para ordenar todos los valores faltantes al principio?
+
+`arrange()` funciona de manera similar a `filter()` excepto que en lugar de seleccionar filas, cambia su orden, y con el uso de `desc()`que permite ordenar columnas por orden desencente y de `is.na()` que comprueba si un valor es NA podemos creas la sih¿giente sintaxis que ordena al principio de una tabla los valores faltantes.
+
+```{r 5.3.1, message=FALSE }
+library(nycflights13)
+library(dplyr)
+arrange(flights, desc(is.na(dep_delay)))
+```
+
+#### 2. Ordena `flights` para encontrar los vuelos más retrasados. y los vuelos que salieron lo antes.
+
+para ordenar `flights` de forma que podamos encontrar los vuelos mas retrasados y los que despegaron lo mas antes posible, tendremos que ordear la variable `dep_delay` de forma acendente y decendente, de esta forma se ordenan primero de forma decente para hallar el vuelo que mas se retraso.
+
+```{r 5.3.2, message=FALSE }
+library(nycflights13)
+library(dplyr)
+arrange(flights,desc(dep_delay))  # Más retrasado
+```
+
+Despues eliminamos la funcion `desc()` para que el orden sea de manera acendente y asi el primer vuelo en la tabla sera el vuelo que salio lo antes posible.
+
+```{r 5.3.2b, message=FALSE }
+library(nycflights13)
+library(dplyr)
+arrange(flights,dep_delay)       # Más adelantado
+```
+
+#### 3. Ordenar flights para encontrar los vuelos más rápidos.
+
+Para encontrar los vuelos mas rapidos usamos `arrange()` con la variable `air_time`.
+
+```{r 5.3.3, message=FALSE }
+library(nycflights13)
+library(dplyr)
+arrange(flights,air_time)
+```
+
+#### 4. ¿Qué vuelos viajaron más lejos? ¿Cuál viajó menos?.
+
+Para encontrar los vuelos  que viajaron mas usamos `arrange()` con la variable `distance` y lo ordenamos con `desc()`.
+
+```{r 5.3.4, message=FALSE }
+library(nycflights13)
+library(dplyr)
+arrange(flights,desc(distance)) # Vuelo más largo
+```
+
+Para encontrar el vuelo  que viajaro menos, quitamos `desc()` del codigo anterior y asi toman el orden normal.
+```{r 5.3.4b, message=FALSE }
+library(nycflights13)
+library(dplyr)
+arrange(flights,distance) # Vuelo más largo
+```
