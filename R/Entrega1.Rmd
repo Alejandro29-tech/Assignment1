@@ -10,9 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## GitHub
-```{r, out.width = "70%", fig.cap = "Puedes encontrar nuestro repositorio en "}
-("https://github.com/Alejandro29-tech/Assignment1.git")
-```
+
 ## Numeros primos
 
 En este codigo, la linea for (x in 1:100){, identifica con la variable "x", desde el valor 1 al 100.
