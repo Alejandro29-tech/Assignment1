@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## GitHub
 
-Visita nuestro repositorio en internet para más información: [**Nuestro Repositorio**](https://github.com/Alejandro29-tech/Assignment1.git)
+Puedes visitar nuestro repositorio en internet, para más información: [**Nuestro Repositorio**](https://github.com/Alejandro29-tech/Assignment1.git)
 
 ## Numeros primos
 

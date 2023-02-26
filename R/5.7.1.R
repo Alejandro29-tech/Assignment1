@@ -13,12 +13,12 @@ time_record<-flights %>%
   filter(min_rank(desc(arr_delay)) == 1)
 
 
-#La pregunta no define una forma de medir el registro a tiempo, por lo que consideraré dos métricas:
+# La pregunta no define una forma de medir el registro a tiempo, por lo que consideraré dos métricas:
 
-#proporción de vuelos no retrasados o cancelados, y
-#retraso medio de llegada.
-#La primera métrica es la proporción de vuelos no cancelados y a tiempo.
-#Utilizo la presencia de una hora de llegada como indicador de que un vuelo no fue cancelado.
-#Sin embargo, hay muchos aviones que nunca han volado un vuelo a tiempo.
-#Además, muchos de los aviones que tienen la menor proporción de vuelos a tiempo
-#solo han volado un pequeño número de vuelos.
+# Proporción de vuelos no retrasados o cancelados, y
+# retraso medio de llegada.
+# La primera métrica es la proporción de vuelos no cancelados y a tiempo.
+# Utilizo la presencia de una hora de llegada como indicador de que un vuelo no fue cancelado.
+# Sin embargo, hay muchos aviones que nunca han volado un vuelo a tiempo.
+# Además, muchos de los aviones que tienen la menor proporción de vuelos a tiempo
+# solo han volado un pequeño número de vuelos.
