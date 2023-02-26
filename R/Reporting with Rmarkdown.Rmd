@@ -5,26 +5,59 @@ date: "2023-02-26"
 output: pdf_document
 ---
 
-```{r }
+```{r } }
 
 ```
 
-## R Markdown
+## Funcion select
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Para el lenguaje de programacion R, `select()` es una de las funciones que vienen incluidas en la libreria `dplyr`,esta se utiliza para la seleccion de columnas dentro de un grupo de datos, ya sean matrices u otros conjuntos de estos. La funcion `select()` permite especificar que columna se desea seleccionar mediante criterios, estos criterios pueden ser nombres de columnas, alguna posocion en especifico o un patron o conjunto de nombres.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Su sintaxis principal es: `select(data, column1, column2, ...)`, donde `data` en un conjunto de datos donde se elijen las columnas `column1` y `column2`. Un ejemplo utilizando la base de datos de vuelos en nueva york (`library(nycflights13)`) y meidnte `select()` se  elijen las columnas deseadas.
 
-```{r cars}
-summary(cars)
+```{r flny,message=FALSE}
+library(nycflights13)
+nycflights13::flights
 ```
 
-## Including Plots
+En este ejemplo, las columnas a seleccionar son year, day, dep_delay que dentro de la base de datos son variables.
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r select, message=FALSE}
+library(dplyr)
+select(flights, year, day, dep_delay)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+En el caso de que dentro de una sola funcion se llame variaveces la misma variable, `select()` solo incluira dichca variable una vez.
+
+```{r selec2, message=FALSE}
+library(dplyr)
+select(flights, year, day, dep_delay, year, day,dep_delay)
+```
+
+En resumen, la función `select()` en R se utiliza para seleccionar un subconjunto de columnas de un conjunto de datos basándose en diferentes criterios, lo que puede ser útil para analizar y visualizar datos de manera más eficiente.
+
+## Funcion filter()
+
+Para el lenguaje de programacion R, `filter()` es una de las funciones que vienen incluidas en la libreria `dplyr` que se utiliza para seleccionar un subconjunto de filas de un conjunto de datos basado en diferentes criterios. La funcion `filter()` permite especificar las condiciones que se deben cumplir para seleccionar las filas deseadas. Estas condiciones se expresan como expresiones lógicas que se evalúan para cada fila del conjunto de datos.
+
+su sintaxin basica es `filter(data condition1,condition2 ...)`, donde `data` en un conjunto de datos donde se desean extraer las filas `condition1` y `condition1`. Esas son las expresiones lógicas que se deben cumplir para seleccionar las filas deseadas.Dentro de las expresiones logicas estan `==, <, >, &, |` las cuales son igualdad, comparador menor que, comparador mayor que , el operador logico AND o Y, operador logico OR o O, respectivamente.
+Para un ejemplo usaremos la base de datos de vuelos en nueva york (`library(nycflights13)`) y mediante el uso de `filter()` elejir las filas deseadas. en este caso seran todos los vuelos con mas de 2 horas de retraso al llegar.
+
+```{r filter, message=FALSE}
+library(nycflights13)
+nycflights13::flights
+  
+```
+```{r filte_rarrdelay, message=FALSE}
+library(dplyr)
+filter(flights,arr_delay>119)
+  
+```
+Estas condiciones tambien pueden ser con multiples expresiones logicas,como en el caso de querer extraer los vuelos que se retrasaron al menos una hora, y tubieron más de 30 minutos en vuelo y que volaron en verano (julio, agosto y septiembre).
+```{r filtercomp, message=FALSE}
+library(nycflights13)
+library(dplyr)
+filter(flights,(arr_delay<=60 & air_time<=30)& (month%in%c(7,8,9)))
+  
+```
+En resumen, la función `filter()` en R se utiliza para seleccionar un subconjunto de filas de un conjunto de datos basándose en diferentes criterios expresados como condiciones lógicas, lo que puede ser útil para filtrar y analizar datos de manera más eficiente.
