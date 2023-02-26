@@ -8,7 +8,7 @@ nycflights13::flights
 fl<-nycflights13::flights
 #1
   flny1<- fl%>%
-  filter(arr_delay>119)         # Vuelos con retraso de +2 horas
+  filter(arr_delay>119)         # Vuelos con retraso de +2 horas.
 #2
 flny2<- fl%>%
   filter(dest=="IAH"|dest=="HOU" ) # Vuelos a Houston
