@@ -249,3 +249,21 @@ new_flights<-mutate(flights, dep_time_min=(dep_time%/%100*60+dep_time%%100)%%144
  select(new_flights,dep_time_min, sched_dep_time_min)
 
 ```
+
+
+#### 2. Comparar `air_time` con `arr_time - dep_time`. ¿Qué esperas ver? ¿Que ves? ¿Qué necesitas hacer para arreglarlo?
+
+Espero que `air_time` sea la diferencia entre llegada y salida de los vuelos. visto de otra forma puede ser `air_time = arr_time - dep_time`. Para confirmar esto , se realiza un codigo parecido al anterior, esto para operar los valores de las variables. Una vez comparado `air_time` con `arr_time - dep_time` se puede afirmar que `air_time = arr_time - dep_time`.
+
+```{r 5.5.2, message=FALSE}
+library(nycflights13)
+library(dplyr)
+fl_air_time<-mutate(flights,dep_time=(dep_time%/%100*60+dep_time%%100)%%1440,
+                      arr_time=(arr_time%/%100*60+arr_time%%100)%%1440,
+                      
+                      air_time2=air_time-arr_time+dep_time)
+
+select(fl_air_time, air_time2 )
+```
+Pues no ya que si esta declaracion fuera correcta, todods los vuelos de `air_time2` deberian ser 0, pero esto no es asi. asi que para decir que `air_time = arr_time - dep_time`  no es 0 debido la zona horaria de los vuelos ya que estas se pueden cruzar entre ellas hablando sobre buelos internacionales, sin embargo tambien hay casos en los que el vuelo es nacional y aun asi el resultado de la operacion no es 0. ¿A que se debe esto? pues puede que los valores de `arr_time` y `dep_time` no sean valores que se toman desde el depegue o propio aterrizaje del vuelo ya que hay mas variables a tener en cuenta de desde cuando sale el vuelo como el tiempo en pista antes de despegar o desembarcar.
+
