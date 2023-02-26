@@ -1,5 +1,5 @@
 #5.6.7
-#1
+#1 Ej
 # En muchos escenarios, el retraso de llegada es más importante. En la mayoría de los casos,
 # llegando tarde es más costoso para el pasajero, ya que podría interrumpir las próximas
 # etapas de su viaje, como la conexión de vuelos o reuniones programadas.
