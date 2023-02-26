@@ -7,7 +7,7 @@ nycflights13::flights
 fl<-nycflights13::flights
 #2
 fl_select<-select(flights, year, day, year, year, day, dest, dep_delay)
-#¿Qué sucede si incluye el nombre de una variable varias veces en una función select()?
+# ¿Qué sucede si incluye el nombre de una variable varias veces en una función select()?
   #RTA: Cualquier variable duplicada solo se incluye una vez.
 
 #3
