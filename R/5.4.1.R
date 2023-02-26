@@ -17,8 +17,7 @@ vars_tab<-select(fl, one_of(vars))
   #RTA:: La función one_of() se utiliza para seleccionar solo las columnas del
   #conjunto de datos que se encuentran en el vector en este caso el vector "vars"
 #Por qué podría ser útil en conjunto con este vector?
-  #RTA:: Porque con esta función es mas fácil crear vectores que tengan caracteres y que tengan nombres de variables.
-
+  #RTA:: tambien con esta función se puede simplificar la funcion `select()`.
 #4
 fl_4.4<-select(fl, contains("time"))
 #Does the result of running the following code surprise you?
