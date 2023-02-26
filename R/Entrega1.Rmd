@@ -15,27 +15,8 @@ En este link podrás encontrar nuestro repositorio en internet:
 
 https://github.com/Alejandro29-tech/Assignment1.git
 
-## Numeros primos
 
-En este codigo, la linea for (x in 1:100){, identifica con la variable "x", desde el valor 1 al 100. Luego, se declara "Nprimo" como TRUE, para que en cuyo caso de que el numero a valorar sea primo, el codigo posteriormente lo imprima sin necesidad de volver a preguntar el numero almacenado, despues se abre un nuevo 'for' en donde se encuentran dos "if", para que luego de realizar la operación, identifique si es o no un numero primo. Conociendo que si la división es menor al valor que este en el "for N", tomara la variable N el valor de x para salir del "for" y continuar a imprimir el numero. De lo contrario, si el modulo es diferente de "0", Nprimo pasara a ser falso y no imprimira el numero en la consola. Y asi consecutivamente hasta llegar al número 100.
-
-```{r primos}
-#numeros primos
-for (x in 1:100){
-  Nprimo <- TRUE
-  for(N in 2:x){
-    mid=x/2
-    if(N>mid){
-      N=x
-    }
-    if(N!=x & x%%N==0){
-      Nprimo <- FALSE
-    }
-  }
-  if(Nprimo==TRUE & x!=1){
-    print(x)
-  }
-}
+```{r }
 
 ```
 
