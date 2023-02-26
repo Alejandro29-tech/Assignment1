@@ -33,4 +33,3 @@ flny7<- fl%>%
   #la funcion between() realiza un rango de valores partiendo de una variable, un ejemplo seria:
 flny7.2<- fl%>%
   filter(between(hour, 0,6))
-# wiiiiiiii
