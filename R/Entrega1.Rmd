@@ -17,7 +17,7 @@ Puedes visitar nuestro repositorio en internet, para más información: [**Nuest
 
 En este codigo, la linea for (x in 1:100){, identifica con la variable "x", desde el valor 1 al 100.
 Luego, se declara "Nprimo" como TRUE, para que en cuyo caso de que el numero a valorar sea primo, el codigo posteriormente lo imprima sin necesidad de volver a preguntar el numero almacenado, despues se abre un nuevo 'for' en donde se encuentran dos "if", para que luego de realizar la operación, identifique si es o no un numero primo. Conociendo que si la división es menor al valor que este en el "for N", tomara la variable N el valor de x para salir del "for" y continuar a imprimir el numero. De lo contrario, si el modulo es diferente de "0", Nprimo pasara a ser falso y no imprimira el numero en la consola. Y asi consecutivamente hasta llegar al número 100.  
-```{r primos}
+```{r primos, results='asis'}
 #numeros primos
 for (x in 1:100){
   Nprimo <- TRUE
@@ -36,14 +36,89 @@ for (x in 1:100){
 }
 
 ```
+## 2. Uso basico de la libreria Tidyverse
+
+los ejercicios propuestos en el documento se tomaron del apartado [**Data transformation**](https://r4ds.had.co.nz/transform.html), de la pagina *R for Data Science*.
+
+#### 5.2.4: 1. Encuentra todos los vuelos que:
+
+-   **Item 1:** Tuvieron un retraso de llegada de dos o más horas.
+
+Primero identificamos la variable de retraso de llegada, en la base de datos es `arr_delay`, tambien identificamos que los datos que nececitamos son un conjunto de filas, por esto se toma la funcion `filter()` y se agrega la condicion que nececitamos para tomar los vuelos que tuvieron un retraso de llegada de dos horas o mas. De esta forma tendriamos que:
+
+```{r Item 1, message=FALSE}
+        library(nycflights13)
+        library(dplyr)
+        filter(flights,arr_delay>119)
+
+```
+-   **item 2:** Voló a Houston (IAH o HOU).
+
+Se identifica la variable que indique el destino de los vuelos y esta se le da la condicion a la cual queremos filtrar en este caso se define con 2 nombres diferentes al destino del vuelo, por lo tanto en la condicion de `filter()` debe ser consideraro para que tome ambas nomenclaturas, para esto se agrega la operacion logica `|`. De esta forma tendriamos que:
+
+```{r item 2, message=FALSE, paged.print=TRUE}
+        library(nycflights13)
+        library(dplyr)    
+        filter(flights, dest=="IAH"|dest=="HOU" )
+```    
 
 
-## Including Plots
+-   **Item 3:** Fueron operados por United, American o Delta.
 
-You can also embed plots, for example:
+Lo primero es identificar las siglas de las aereolineas que nos dan en este caso UA, AA y DL respectivamente, despues tomamos la variable `carrier` y asignamos las siglas medinte una funcion `filter()`, de esta manera tendremos los vuelos operados por dichas aereolineas, y como en el caso anterior se agrega la operacion logica `|` Para cumplir la condicion de que se filtren cualquiera de las 3 aereolineas. De esta forma tendriamos que:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r item 3, message=FALSE }
+        library(nycflights13)
+        library(dplyr)
+  filter(flights, carrier=="AA"|carrier=="DL"|carrier=="UA")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+-   **Item 4**: Volo en verano ( julio, agosto y septiembre ).
+
+Para la imprementacion este item se identifica que los meses estan definidos en la variable `month` y que los meses son almacenados por el orden numerico de estos, por esto se identofican los meses de verano como 7,8 y 9 correspondientes a julio, agosto y septiembre respectivamente, para la sintaxis de la condicion se usa la funcion `filter()` y la funcion `%in%`, de esta manera mediante `%in%` se utiliza para verificar si los elementos de un cojunto de datos estan presentes. De esta forma tendriamos que:
+
+```{r item 4, message=FALSE }
+library(nycflights13)
+library(dplyr)
+filter(flights,month%in%c(7,8,9))
+```
+
+-   **Item 5**: LLego mas de dos horas tarde, pero no se retraso.
+
+Para este punto se toma la condicion del Item 1 ya que se mencionan nuevamente los buelos con mas de 2 horas de retraso en llegar, y para la segunda condicion se identifica la variable `dep_delay` como la que toma los datos de los vuelos retrsados, y se agrega el operador logico `&` para combinar las condiciones y filtar los vuelos que cumplan con las condiciones. De esta forma tendriamos que:
+
+```{r item 5, message=FALSE }
+library(nycflights13)
+library(dplyr)
+filter(flights, arr_delay>119&dep_delay==0)
+```
+
+-   **Item 6**: Se retrasaron al menos una hora, pero estuvieron más de 30 minutos en vuelo.
+
+Con la logica planteada en el Item 5, cambiamos las variables para cumplir con las condiciones, en este caso solo se nececitan los vuelos con un retraso de 1 hora, pero que tambien volaron por mas de 30 minutos, para esto usamos la variable `air_time` y se asigna un tiempo menor o igual 30 minutos. De esta forma tendriamos que:
+
+```{r item 6, message=FALSE }
+library(nycflights13)
+library(dplyr)
+  filter(flights, arr_delay<=60 & air_time<=30)
+```
+
+-   **Item 7**: Salio entre la medianoche y las 6 am.
+
+Con la funcion `filter()`se definen un rango de valores entre las 0 (media noche) y 6 (6 de la mañana) e incluyendo los limites del rango, aplicamos esta logica a la variable `hour`, asi tendriamos los vuelos entre media noche y las 6 am.
+
+```{r item 7, message=FALSE }
+library(nycflights13)
+library(dplyr)
+  filter(flights, hour>=0 & hour<=6)
+```
+
+#### 5.2.4: 2.Otro ayudante de filtrado de dplyr útil es between(). ¿Qué hace? ¿Puede usarse para simplificar los códigos del anterior punto?
+
+la funcion `between()` realiza un rango de valores partiendo de una variable, de esta forma puede cambiar la estructura de varios ejercicios vistos anteriormente, un ejemplo utilizando el Item 7 del punto anterior seria:
+```{r punto 2, message=FALSE }
+library(nycflights13)
+library(dplyr)
+filter(flights, between(hour, 0,6))
+```
+donde como se ve, al usar la funcion `between()` cambia totalmente la estructura interna de `filter()`, devido a que el uso de esta hace inesesario en uso de la condicion de `<, >, => y <=`.
