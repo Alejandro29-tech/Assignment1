@@ -8,7 +8,7 @@ fl<-nycflights13::flights
 #1
 # Actualmente dep_time y sched_dep_time son convenientes de ver,
 # pero difícil de calcular porque no son realmente números continuos.
-# Conviértalos en una representación más conveniente de la cantidad de minutos desde medianoche
+# Conviértalos en una representación más conveniente de la cantidad de minutos desde medianoche.
 fl_t <- mutate(fl,
                dep_time_min=(dep_time%/%100*60+dep_time%%100)%%1440,
                sched_dep_time_min=(sched_dep_time%/%100*60+sched_dep_time%%100)%%1440)
