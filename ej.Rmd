@@ -1,0 +1,40 @@
+---
+title: "ejs"
+author: "yoks"
+date: "2023-02-26"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### 2. tranformacion de datos
+
+Para este apartado se realizaron los ejercicios de la pagina [**R for Data Science**](https://r4ds.had.co.nz/transform.html) la cual tambien proporciona informacion con la cual desarrolar dichos ejercicios.
+
+* **ejercicio 5.2.4**
+  + item 1: hallar todos los vuelos que:
+    Tuvieron un retraso de llegada de dos o más horas:
+
+```{r item 1}
+library(nycflights13)
+library(tidyverse)
+library(readr)
+library(dplyr)
+nycflights13::flights
+fl<-nycflights13::flights
+  flny<- fl%>%
+  flny1<- fl%>%
+  filter(arr_delay>119)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
