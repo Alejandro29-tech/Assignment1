@@ -1,4 +1,4 @@
-#numeros primos
+# Números primos
 for (x in 1:100){
   Nprimo <- TRUE
   for(N in 2:x){
