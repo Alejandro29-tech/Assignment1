@@ -12,6 +12,8 @@ fl<-nycflights13::flights
 fl_t <- mutate(fl,
                dep_time_min=(dep_time%/%100*60+dep_time%%100)%%1440,
                sched_dep_time_min=(sched_dep_time%/%100*60+sched_dep_time%%100)%%1440)
+select(fl_t,dep_time_min, sched_dep_time_min)
+
 #2
 # Qué esperas ver ?
 #RTA:: Espero que air_time sea la diferencia entre llegada y salida de los vuelos.
