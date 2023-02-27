@@ -352,4 +352,5 @@ filter(min_rank(desc(arr_delay)) == 1)
 
 ```
 
+Es importante destacar que el registro de puntualidad de un avión puede verse afectado por una variedad de factores, incluyendo condiciones climáticas, problemas mecánicos, congestión del tráfico aéreo y otros imprevistos que pueden impactar el horario de vuelo. Por lo tanto, aunque este avión en particular tenga el peor record de puntualidad según el filtro aplicado, es posible que haya habido circunstancias atenuantes que hayan contribuido a su bajo desempeño. Es importante considerar estos factores antes de sacar conclusiones definitivas sobre el rendimiento de una aeronave.
 
