@@ -331,7 +331,7 @@ Pues no ya que, si esta declaración fuera correcta, todos los vuelos de `air_ti
 
 ## 5.7.1
 
-## 2 ¿Qué avión ( tailnum) tiene el peor récord de puntualidad?
+## 2 ¿Qué avión (tailnum) tiene el peor récord de puntualidad?
 
 
 
